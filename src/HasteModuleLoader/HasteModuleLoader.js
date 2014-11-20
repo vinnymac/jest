@@ -15,6 +15,7 @@
  *       Relatedly: It's time we vastly simplify node-haste.
  */
 
+var CoverageCollector = require('../CoverageCollector');
 var fs = require('graceful-fs');
 var hasteLoaders = require('node-haste/lib/loaders');
 var moduleMocker = require('../lib/moduleMocker');
@@ -114,7 +115,6 @@ function _getCacheFilePath(config) {
 
 function Loader(config, environment, resourceMap) {
   this._config = config;
-  this._CoverageCollector = require(config.coverageCollector);
   this._coverageCollectors = {};
   this._currentlyExecutingModulePath = '';
   this._environment = environment;
@@ -578,8 +578,6 @@ Loader.prototype._shouldMock = function(currPath, moduleName) {
     return false;
   } else if (this._explicitShouldMock.hasOwnProperty(moduleID)) {
     return this._explicitShouldMock[moduleID];
-  } else if (NODE_CORE_MODULES[moduleName]) {
-    return false;
   } else if (this._shouldAutoMock) {
 
     // See if the module is specified in the config as a module that should
