@@ -26,6 +26,7 @@ var DEFAULT_CONFIG_VALUES = {
   testPathDirs: ['<rootDir>'],
   testPathIgnorePatterns: ['/node_modules/'],
   testRunner: require.resolve('../jasmineTestRunner/jasmineTestRunner'),
+  coverageFormats: ['text', 'json'],
   moduleDirectories: []
 };
 
@@ -220,7 +221,6 @@ function normalizeConfig(config) {
       case 'setupJSMockLoaderOptions':
       case 'testDirectoryName':
       case 'testFileExtensions':
-      case 'testReporter':
       case 'moduleFileExtensions':
         value = config[key];
         break;

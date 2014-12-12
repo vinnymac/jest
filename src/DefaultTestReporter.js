@@ -155,6 +155,13 @@ function (config, aggregatedResults) {
 
   this.log(results);
   this.log('Run time: ' + runTime + 's');
+
+  if (config.collectCoverage) {
+    reporter.addAll([ 'json', 'text', 'lcov', 'clover' ]);
+    reporter.write(collector, true, function () {
+        console.log('All reports generated');
+    });
+  }
 };
 
 module.exports = DefaultTestReporter;
