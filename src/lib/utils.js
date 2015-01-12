@@ -25,7 +25,8 @@ var DEFAULT_CONFIG_VALUES = {
   moduleFileExtensions: ['js', 'json'],
   testPathDirs: ['<rootDir>'],
   testPathIgnorePatterns: ['/node_modules/'],
-  testRunner: require.resolve('../jasmineTestRunner/jasmineTestRunner')
+  testRunner: require.resolve('../jasmineTestRunner/jasmineTestRunner'),
+  moduleDirectories: []
 };
 
 function _replaceRootDirTags(rootDir, config) {
@@ -195,6 +196,7 @@ function normalizeConfig(config) {
       case 'testPathIgnorePatterns':
       case 'modulePathIgnorePatterns':
       case 'unmockedModulePathPatterns':
+      case 'moduleDirectories':
         // _replaceRootDirTags is specifically well-suited for substituting
         // <rootDir> in paths (it deals with properly interpreting relative path
         // separators, etc).
