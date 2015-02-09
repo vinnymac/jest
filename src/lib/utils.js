@@ -219,8 +219,10 @@ function normalizeConfig(config) {
       case 'setupJSLoaderOptions':
       case 'setupJSTestLoaderOptions':
       case 'setupJSMockLoaderOptions':
+      case 'testCollector':
       case 'testDirectoryName':
       case 'testFileExtensions':
+      case 'testReporter':
       case 'moduleFileExtensions':
         value = config[key];
         break;

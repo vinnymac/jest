@@ -115,6 +115,9 @@ function _getCacheFilePath(config) {
 
 function Loader(config, environment, resourceMap) {
   this._config = config;
+  this._CoverageCollector = require(
+    config.testCollector || '../CoverageCollector'
+  );
   this._coverageCollectors = {};
   this._currentlyExecutingModulePath = '';
   this._environment = environment;
@@ -234,7 +237,7 @@ Loader.prototype._execModule = function(moduleObj) {
   if (shouldCollectCoverage) {
     if (!this._coverageCollectors.hasOwnProperty(modulePath)) {
       this._coverageCollectors[modulePath] =
-        new this._CoverageCollector(moduleContent, modulePath);
+        new CoverageCollector(moduleContent, modulePath);
     }
     var collector = this._coverageCollectors[modulePath];
     moduleLocalBindings[COVERAGE_STORAGE_VAR_NAME] =
